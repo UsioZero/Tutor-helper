@@ -5,7 +5,7 @@
 5;Olegamegaledon;Physics;5
 6;Olegelikopter;Biology;3
 7;Olegtorat;Biology;3
-8;Olegtorat;Biology;5
+8;Olegtorat;Biology;4
 9;Olegtorat;Physics;4
 10;Olegtorat;HMCo;1
 11;Olegtorat;Math;4
