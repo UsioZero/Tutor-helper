@@ -8,3 +8,5 @@ C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor helper.csproj.GenerateReso
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor helper.csproj.CoreCompileInputs.cache
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor helper.exe
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor helper.pdb
+C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.Mainform.resources
+C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.AddOrEditForm.resources
