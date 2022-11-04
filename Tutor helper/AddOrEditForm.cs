@@ -78,7 +78,7 @@ namespace Tutor_helper
                 database.UpdateStudent(updatedStudent);
             }
 
-            MessageBox.Show("Data has been added!", "", MessageBoxButtons.OK);
+            MessageBox.Show("Data has been added!", "123321", MessageBoxButtons.OK);
         }
     }
 }
