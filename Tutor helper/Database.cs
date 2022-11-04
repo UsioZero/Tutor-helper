@@ -29,6 +29,7 @@ namespace Tutor_helper
             {
                 Students.Add(new Student(line));
             }
+            reader.Close();
 
             StreamReader reader1 = new StreamReader(subjectsPath);
             string line1;
@@ -36,6 +37,7 @@ namespace Tutor_helper
             {
                 Subjects.Add(line1);
             }
+            reader1.Close();
         }
 
         public List<Student> GetStudents()
@@ -57,19 +59,20 @@ namespace Tutor_helper
 
         public void UpdateStudent(Student updated)
         {
-            int index = Students.FindIndex(city => city.Uuid == updated.Uuid);
+            int index = Students.FindIndex(student => student.Uuid == updated.Uuid);
 
             Students[index] = updated;
-            SaveStudentsToFile(Students);
+            SaveStudentsToFile();
         }
 
-        public void SaveStudentsToFile(List<Student> updatedStudents)
+        public void SaveStudentsToFile()
         {
             StreamWriter writer = new StreamWriter(studentsPath);
-            foreach (Student student in updatedStudents)
+            foreach (Student student in Students)
             {
                 writer.WriteLine(student.ToString());
             }
+            writer.Close();
         }
     }
 }

@@ -17,6 +17,15 @@ namespace Tutor_helper
             filteredStudents = new List<Student> { };
             InitializeComponent();
             UpdateFilteredStudents();
+
+            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            editButtonColumn.Name = "edit_column";
+            editButtonColumn.Text = "Edit";
+            int columnIndex = 4;
+            if (studentsDataGrid.Columns["edit_column"] == null)
+            {
+                studentsDataGrid.Columns.Insert(columnIndex, editButtonColumn);
+            }
         }
 
         private int curFirstCity = 0;
@@ -98,17 +107,6 @@ namespace Tutor_helper
             Hide();
         }   
 
-        private void studentsDataGrid_CellClick(object sender
-    , DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 5)
-            {
-                Student student = filteredStudents[curFirstCity + e.RowIndex];
-
-                AddorEditStudent(student);
-            }
-        }
-
         private void addButton_Click(object sender, EventArgs e)
         {
             AddorEditStudent();
@@ -122,6 +120,16 @@ namespace Tutor_helper
         private void exitButton_Click(object sender, EventArgs e)
         {
             OnBack();
+        }
+
+        private void studentsDataGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == studentsDataGrid.Columns["edit_column"].Index)
+            {
+                Student student = filteredStudents[curFirstCity + e.RowIndex];
+
+                AddorEditStudent(student);
+            }
         }
     }
 }
