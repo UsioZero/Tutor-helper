@@ -63,7 +63,7 @@ namespace Tutor_helper
         private void saveButton_Click(object sender, EventArgs e)
         {
             Student updatedStudent = new Student(
-                uuid: student != null ? student.Uuid : database.GetStudents().Max(s => s.Uuid),
+                uuid: student != null ? student.Uuid : database.GetStudents().Max(s => s.Uuid) + 1,
                 name: nameTextBox.Text,
                 subject: subjectComboBox.SelectedItem.ToString(),
                 mark: Convert.ToInt32(markNummer.Value)
@@ -77,6 +77,8 @@ namespace Tutor_helper
             {
                 database.UpdateStudent(updatedStudent);
             }
+
+            MessageBox.Show("Data has been added!", "123", MessageBoxButtons.OK);
         }
     }
 }

@@ -8,5 +8,4 @@
 8;Olegtorat;Biology;5
 9;Olegtorat;Physics;4
 10;Olegtorat;Physics;5
-11;Olegtorat;Math;4
-12;Olegogidramegatron;Math;4
+11;Olegtorat;Math;412;Olegamegatonicosus;Biology;4

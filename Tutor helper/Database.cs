@@ -52,6 +52,7 @@ namespace Tutor_helper
             StreamWriter writer
                 = new StreamWriter(studentsPath, append: true);
             writer.WriteLine(newStudent.ToString());
+            writer.Close();
         }
 
         public void UpdateStudent(Student updated)
