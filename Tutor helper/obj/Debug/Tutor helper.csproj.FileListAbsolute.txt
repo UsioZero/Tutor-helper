@@ -10,3 +10,15 @@ C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor helper.exe
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor helper.pdb
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.Mainform.resources
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.AddOrEditForm.resources
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\bin\Debug\Tutor helper.exe.config
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\bin\Debug\Tutor helper.exe
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\bin\Debug\Tutor helper.pdb
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor helper.csproj.AssemblyReference.cache
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor helper.csproj.SuggestedBindingRedirects.cache
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor_helper.AddOrEditForm.resources
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor_helper.Mainform.resources
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor_helper.Properties.Resources.resources
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor helper.csproj.GenerateResource.cache
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor helper.csproj.CoreCompileInputs.cache
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor helper.exe
+C:\Users\khoty\Desktop\учеба 3.0\лмвз\kf,f 4\Tutor-helper\Tutor helper\obj\Debug\Tutor helper.pdb

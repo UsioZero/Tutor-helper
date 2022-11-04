@@ -110,6 +110,7 @@ namespace Tutor_helper
         private void addButton_Click(object sender, EventArgs e)
         {
             AddorEditStudent();
+
         }
 
         public void OnBack()
@@ -122,14 +123,19 @@ namespace Tutor_helper
             OnBack();
         }
 
-        private void studentsDataGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void exitButton_MouseHover(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == studentsDataGrid.Columns["edit_column"].Index)
-            {
-                Student student = filteredStudents[curFirstCity + e.RowIndex];
+            labelexit.Text = "Exit";
+        }
 
-                AddorEditStudent(student);
-            }
+        private void exitButton_MouseLeave(object sender, EventArgs e)
+        {
+            labelexit.Text = "";
+        }
+
+        private void addButton_MouseHover(object sender, EventArgs e)
+        {
+
         }
     }
 }
