@@ -83,7 +83,7 @@ namespace Tutor_helper
             //Add button column
             DataGridViewImageColumn editButtonColumn = new DataGridViewImageColumn();
             editButtonColumn.Name = "Add";
-            editButtonColumn.Image = Image.FromFile(@"..\..\pen.png");
+            editButtonColumn.Image = Image.FromFile(@"..\..\pen20.png");
             int columnIndex = 0;
             if (studentsDataGrid.Columns["Add"] == null)
             {
