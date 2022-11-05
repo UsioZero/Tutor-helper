@@ -4,56 +4,95 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tutor_helper
 {
+
     public partial class Mainform : Form
     {
         public Mainform()
         {
-            filteredStudents = new List<StudentMark> { };
+            filteredStudents = new List<Student> { };
+            subjects = database.Subjects;
+
             InitializeComponent();
             UpdateFilteredStudents();
 
+        }
+
+        private int curPage = 0;
+        private int curMaxColumn = 0;
+        Database database = new Database();
+        private List<Student> filteredStudents;
+        private List<string> subjects;
+
+        public void UpdateFilteredStudents()
+        {
+            curMaxColumn = 0;
+
+            filteredStudents = new List<Student> { };
+            List<Student> tmpstud = database.GetStudents();
+            for (int i = 0; i < tmpstud.Count; i++)
+            {
+                filteredStudents.Add(new Student(tmpstud[i].ToString()));
+            }
+
+            studentsDataGrid.Rows.Clear();
+            studentsDataGrid.Columns.Clear();
+
+            foreach (Student student in filteredStudents)
+            {
+                student.Marks = student.Marks.FindAll(ma => ma.Subject.ToString() == subjects[curPage].ToString());
+
+                if(student.Marks.Count > curMaxColumn) curMaxColumn = student.Marks.Count;
+            }
+
+            curMaxColumn += 2;
+
+            studentsDataGrid.ColumnCount = curMaxColumn;
+            studentsDataGrid.Columns[0].Name = "N";
+            studentsDataGrid.Columns[1].Name = "Name";;
+
+            //int roInd = 0;
+            foreach (Student student in filteredStudents)
+            {
+                DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                dataGridViewRow.CreateCells(studentsDataGrid);
+
+                dataGridViewRow.Cells[0].Value = student.Id;
+                dataGridViewRow.Cells[1].Value = student.Name;
+                int rindex = 2;
+                foreach(StudentMark mark in student.Marks)
+                {
+                    dataGridViewRow.Cells[rindex].Value = mark.Mark;
+                    rindex++;
+                }
+
+                studentsDataGrid.Rows.Add(dataGridViewRow);
+            }
+
+            //studentsDataGrid.DataSource = filteredStudents;
+
+            //Edit button column
             DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
             editButtonColumn.Name = "edit_column";
             editButtonColumn.Text = "Edit";
-            int columnIndex = 4;
+            int columnIndex = 0;
             if (studentsDataGrid.Columns["edit_column"] == null)
             {
                 studentsDataGrid.Columns.Insert(columnIndex, editButtonColumn);
             }
-        }
-
-        private int curFirstCity = 0;
-        Database database = new Database();
-        private List<StudentMark> filteredStudents;
-
-        public void UpdateFilteredStudents(bool changePosition = true)
-        {
-            if (changePosition)
-            {
-                curFirstCity = 0;
-            }
-
-            filteredStudents = database.GetStudents();
-
-            studentsDataGrid.DataSource = filteredStudents.Skip(curFirstCity).Take(10)
-                .ToList();
 
             UpdatePageLabel();
         }
 
         private void UpdatePageLabel()
         {
-            int from = curFirstCity + 1;
-            int to = curFirstCity + 10 < filteredStudents.Count
-                ? curFirstCity + 10
-                : filteredStudents.Count;
-            PageLabel.Text = $"{from}-{to} of {filteredStudents.Count}";
+            PageLabel.Text = subjects[curPage];
         }
 
         private void CityPage_KeyDown(object sender, KeyEventArgs e)
@@ -66,30 +105,20 @@ namespace Tutor_helper
 
         private void leftButton_Click(object sender, EventArgs e)
         {
-            if (curFirstCity != 0)
+            if (curPage != 0)
             {
-                curFirstCity -= 10;
-
-                studentsDataGrid.DataSource = filteredStudents.Skip(curFirstCity)
-                    .Take(10).ToList();
-                UpdatePageLabel();
+                curPage--;
+                UpdateFilteredStudents();
             }
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
-            if (curFirstCity <= filteredStudents.Count - 10)
+            if (curPage + 1 < subjects.Count)
             {
-                curFirstCity += 10;
-                studentsDataGrid.DataSource = filteredStudents.Skip(curFirstCity)
-                    .Take(10).ToList();
-                UpdatePageLabel();
+                curPage++;
+                UpdateFilteredStudents();
             }
-        }
-
-        private void AddCityButton_Click(object sender, EventArgs e)
-        {
-            AddorEditStudent();
         }
 
         private void AddorEditStudent()
@@ -122,14 +151,15 @@ namespace Tutor_helper
             OnBack();
         }
 
+        //Mark edit
         private void studentsDataGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == studentsDataGrid.Columns["edit_column"].Index)
-            {
-                StudentMark student = filteredStudents[curFirstCity + e.RowIndex];
+            //if (e.ColumnIndex == studentsDataGrid.Columns["edit_column"].Index)
+            //{
+            //    StudentMark studentMark = filteredStudents[curFirstCity + e.RowIndex];
 
-                AddorEditStudent(student);
-            }
+            //    AddorEditStudent(studentMark);
+            //}
         }
     }
 }

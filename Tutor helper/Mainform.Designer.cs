@@ -46,7 +46,7 @@
             this.studentsDataGrid.Name = "studentsDataGrid";
             this.studentsDataGrid.ReadOnly = true;
             this.studentsDataGrid.RowHeadersWidth = 51;
-            this.studentsDataGrid.Size = new System.Drawing.Size(551, 255);
+            this.studentsDataGrid.Size = new System.Drawing.Size(658, 255);
             this.studentsDataGrid.TabIndex = 0;
             this.studentsDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentsDataGrid_CellClick_1);
             // 
@@ -62,7 +62,7 @@
             // 
             // rightButton
             // 
-            this.rightButton.Location = new System.Drawing.Point(687, 12);
+            this.rightButton.Location = new System.Drawing.Point(797, 13);
             this.rightButton.Name = "rightButton";
             this.rightButton.Size = new System.Drawing.Size(33, 254);
             this.rightButton.TabIndex = 2;
@@ -104,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(927, 549);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.PageLabel);

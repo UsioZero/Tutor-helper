@@ -14,43 +14,45 @@ namespace Tutor_helper
     {
         private readonly Database database;
         private readonly Mainform parent;
-        private readonly StudentMark student;
+        private readonly Student student;
+        private readonly StudentMark mark;
 
-        public AddOrEditForm(Mainform parentRE, Database databaseRe, StudentMark studentRe)
+        public AddOrEditForm(Mainform parentRE, Database databaseRe, Student studentRe, StudentMark markRe)
         {
             InitializeComponent();
             parent = parentRE;
             database = databaseRe;
             student = studentRe;
+            mark = markRe;
 
             markNummer.Minimum = 0;
             markNummer.Maximum = 5;
 
-            subjectComboBox.Items.AddRange(database.Subjects
-                .ToArray()
-            );
+            //subjectComboBox.Items.AddRange(database.Subjects
+            //    .ToArray()
+            //);
 
-            nameTextBox.Text = student.Name;
-            subjectComboBox.SelectedItem = student.Subject;
-            markNummer.Value = student.Mark;
+            //nameTextBox.Text = student.Name;
+            //subjectComboBox.SelectedItem = student.Subject;
+            //markNummer.Value = student.Mark;
         }
         public AddOrEditForm(Mainform parentRE, Database databaseRe)
         {
-            InitializeComponent();
-            parent = parentRE;
-            database = databaseRe;
+            //InitializeComponent();
+            //parent = parentRE;
+            //database = databaseRe;
 
-            markNummer.Minimum = 0;
-            markNummer.Maximum = 5;
+            //markNummer.Minimum = 0;
+            //markNummer.Maximum = 5;
 
-            subjectComboBox.Items.AddRange(database.Subjects
-                .ToArray()
-            );
+            //subjectComboBox.Items.AddRange(database.Subjects
+            //    .ToArray()
+            //);
         }
 
         private void ClothThisPage()
         {
-            parent.UpdateFilteredStudents(false);
+            parent.UpdateFilteredStudents();
             parent.Show();
             Close();
         }
@@ -62,24 +64,24 @@ namespace Tutor_helper
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            StudentMark updatedStudent = new StudentMark(
-                uuid: "",
-                name: nameTextBox.Text,
-                markid: student != null ? student.Uuid : (database.GetStudents().Max(s => s.Uuid) + 1),
-                subject: subjectComboBox.SelectedItem.ToString(),
-                mark: Convert.ToInt32(markNummer.Value)
-            );
+            //StudentMark updatedStudent = new StudentMark(
+            //    uuid: "",
+            //    name: nameTextBox.Text,
+            //    markid: student != null ? student.Uuid : (database.GetStudents().Max(s => s.Uuid) + 1),
+            //    subject: subjectComboBox.SelectedItem.ToString(),
+            //    mark: Convert.ToInt32(markNummer.Value)
+            //);
 
-            if (student == null)
-            {
-                database.AddMark(updatedStudent);
-            }
-            else
-            {
-                database.UpdateMark(updatedStudent);
-            }
+            //if (student == null)
+            //{
+            //    database.AddMark(updatedStudent);
+            //}
+            //else
+            //{
+            //    database.UpdateMark(updatedStudent);
+            //}
 
-            MessageBox.Show("Data has been added!", "", MessageBoxButtons.OK);
+            //MessageBox.Show("Data has been added!", "", MessageBoxButtons.OK);
         }
     }
 }
