@@ -14,7 +14,7 @@ namespace Tutor_helper
     {
         public Mainform()
         {
-            filteredStudents = new List<Student> { };
+            filteredStudents = new List<StudentMark> { };
             InitializeComponent();
             UpdateFilteredStudents();
 
@@ -30,7 +30,7 @@ namespace Tutor_helper
 
         private int curFirstCity = 0;
         Database database = new Database();
-        private List<Student> filteredStudents;
+        private List<StudentMark> filteredStudents;
 
         public void UpdateFilteredStudents(bool changePosition = true)
         {
@@ -99,7 +99,7 @@ namespace Tutor_helper
             editForm.Show();
             Hide();
         }
-        private void AddorEditStudent(Student student)
+        private void AddorEditStudent(StudentMark student)
         {
             AddOrEditForm editForm = new AddOrEditForm(this,
                 database, student);
@@ -126,7 +126,7 @@ namespace Tutor_helper
         {
             if (e.ColumnIndex == studentsDataGrid.Columns["edit_column"].Index)
             {
-                Student student = filteredStudents[curFirstCity + e.RowIndex];
+                StudentMark student = filteredStudents[curFirstCity + e.RowIndex];
 
                 AddorEditStudent(student);
             }

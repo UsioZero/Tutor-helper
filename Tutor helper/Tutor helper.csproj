@@ -63,7 +63,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student.cs" />
+    <Compile Include="StudentMark.cs" />
     <EmbeddedResource Include="AddOrEditForm.resx">
       <DependentUpon>AddOrEditForm.cs</DependentUpon>
     </EmbeddedResource>

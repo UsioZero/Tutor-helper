@@ -15,19 +15,19 @@ namespace Tutor_helper
             GetStudentsFromFile();
         }
 
-        public List<Student> Students { private set; get; }
+        public List<StudentMark> Students { private set; get; }
         public List<string> Subjects { private set; get; }
 
         private void GetStudentsFromFile()
         {
-            Students = new List<Student>();
+            Students = new List<StudentMark>();
             Subjects = new List<string>();
 
             StreamReader reader = new StreamReader(studentsPath);
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                Students.Add(new Student(line));
+                Students.Add(new StudentMark(line));
             }
             reader.Close();
 
@@ -40,14 +40,14 @@ namespace Tutor_helper
             reader1.Close();
         }
 
-        public List<Student> GetStudents()
+        public List<StudentMark> GetStudents()
         {
             return Students.OrderBy(Students => Students.Mark).ToList()
                 .OrderBy(Students => Students.Subject).ToList()
                 .OrderBy(Students => Students.Uuid).ToList();
         }
 
-        public void AddStudent(Student newStudent)
+        public void AddMark(StudentMark newStudent)
         {
             Students.Add(newStudent);
 
@@ -57,7 +57,7 @@ namespace Tutor_helper
             writer.Close();
         }
 
-        public void UpdateStudent(Student updated)
+        public void UpdateMark(StudentMark updated)
         {
             int index = Students.FindIndex(student => student.Uuid == updated.Uuid);
 
@@ -68,7 +68,7 @@ namespace Tutor_helper
         public void SaveStudentsToFile()
         {
             StreamWriter writer = new StreamWriter(studentsPath);
-            foreach (Student student in Students)
+            foreach (StudentMark student in Students)
             {
                 writer.WriteLine(student.ToString());
             }

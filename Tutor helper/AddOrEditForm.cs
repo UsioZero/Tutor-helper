@@ -14,9 +14,9 @@ namespace Tutor_helper
     {
         private readonly Database database;
         private readonly Mainform parent;
-        private readonly Student student;
+        private readonly StudentMark student;
 
-        public AddOrEditForm(Mainform parentRE, Database databaseRe, Student studentRe)
+        public AddOrEditForm(Mainform parentRE, Database databaseRe, StudentMark studentRe)
         {
             InitializeComponent();
             parent = parentRE;
@@ -62,20 +62,21 @@ namespace Tutor_helper
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            Student updatedStudent = new Student(
-                uuid: student != null ? student.Uuid : (database.GetStudents().Max(s => s.Uuid) + 1),
+            StudentMark updatedStudent = new StudentMark(
+                uuid: "",
                 name: nameTextBox.Text,
+                markid: student != null ? student.Uuid : (database.GetStudents().Max(s => s.Uuid) + 1),
                 subject: subjectComboBox.SelectedItem.ToString(),
                 mark: Convert.ToInt32(markNummer.Value)
             );
 
             if (student == null)
             {
-                database.AddStudent(updatedStudent);
+                database.AddMark(updatedStudent);
             }
             else
             {
-                database.UpdateStudent(updatedStudent);
+                database.UpdateMark(updatedStudent);
             }
 
             MessageBox.Show("Data has been added!", "", MessageBoxButtons.OK);

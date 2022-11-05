@@ -1,38 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Tutor_helper
 {
-    public class Student
+    internal class Student
     {
-        public Student(int uuid, string name, string subject, int mark)
+        public Student(int uuid, string name, int markid, string subject, int mark)
         {
             Uuid = uuid;
             Name = name;
+            Markid = markid;
             Subject = subject;
             Mark = mark;
         }
 
-        public Student(string line)
-        {
-            string[] words = line.Split(';');
-            Uuid = Int32.Parse(words[0]);
-            Name = words[1];
-            Subject = words[2];
-            Mark = Int32.Parse(words[3]);
-        }
 
-        public Int32 Uuid { protected set; get; }
-        public string Name { get; set; }
-        public string Subject { get; set; }
-        public int Mark { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Uuid};{Name};{Subject};{Mark}";
-        }
     }
 }
