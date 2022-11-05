@@ -1,6 +1,6 @@
-1;Oleg;1;1;Biology;3
+1;Oleg;3;1;Biology;3;2;HMCo;1;3;Math;4
 2;Olegsii;2;1;Physics;3;2;Physics;4
 3;Olegamegaledon;2;1;Physics;5;2;Physics;5
 4;Olelikopter;1;1;Biology;3
-5;Olegtorat;5;1;Biology;3;2;Biology;4;3;Physics;4;4;HMCo;1;5;Math;5
-6;ASfasd;1;1;Physics;2
+5;Olegtorat;5;1;Biology;3;2;Biology;4;3;Physics;4;4;HMCo;1;5;Math;3
+6;Olegithub;3;1;Physics;2;2;Math;3;3;Math;2

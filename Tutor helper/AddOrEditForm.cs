@@ -14,40 +14,57 @@ namespace Tutor_helper
     {
         private readonly Database database;
         private readonly Mainform parent;
-        private readonly Student student;
-        private readonly StudentMark mark;
+        private readonly Int32 studentId;
+        private readonly Int32 markId = 0;
 
-        public AddOrEditForm(Mainform parentRE, Database databaseRe, Student studentRe, StudentMark markRe)
+        //Add mark
+        public AddOrEditForm(Mainform parentRE, Database databaseRe, int studentIdRe, string subj)
         {
             InitializeComponent();
             parent = parentRE;
             database = databaseRe;
-            student = studentRe;
-            mark = markRe;
+            studentId = studentIdRe;
 
             markNummer.Minimum = 0;
             markNummer.Maximum = 5;
 
-            //subjectComboBox.Items.AddRange(database.Subjects
-            //    .ToArray()
-            //);
+            subjectComboBox.Items.AddRange(database.Subjects
+                .ToArray()
+            );
 
-            //nameTextBox.Text = student.Name;
-            //subjectComboBox.SelectedItem = student.Subject;
-            //markNummer.Value = student.Mark;
+            subjectComboBox.SelectedItem = subj;
+
+            nameTextBox.Text = database.GetStudents()
+                .Find(st => st.Id == studentId).Name;
         }
-        public AddOrEditForm(Mainform parentRE, Database databaseRe)
+
+        //Edit Mark
+        public AddOrEditForm(Mainform parentRE, Database databaseRe, int studentIdRe, int markIdRe)
         {
-            //InitializeComponent();
-            //parent = parentRE;
-            //database = databaseRe;
+            InitializeComponent();
+            parent = parentRE;
+            database = databaseRe;
+            studentId = studentIdRe;
+            markId = markIdRe;
 
-            //markNummer.Minimum = 0;
-            //markNummer.Maximum = 5;
+            markNummer.Minimum = 0;
+            markNummer.Maximum = 5;
 
-            //subjectComboBox.Items.AddRange(database.Subjects
-            //    .ToArray()
-            //);
+            markNummer.Value = database.GetStudents()
+                .Find(st => st.Id == studentId)
+                .Marks.Find(ma => ma.Id == markId).Mark;
+
+            subjectComboBox.Items.AddRange(database.Subjects
+                .ToArray()
+            );
+
+            subjectComboBox.SelectedItem = database.GetStudents()
+                .Find(st => st.Id == studentId)
+                .Marks.Find(ma => ma.Id == markId)
+                .Subject;
+
+            nameTextBox.Text = database.GetStudents()
+                .Find(st => st.Id == studentId).Name;
         }
 
         private void ClothThisPage()
@@ -62,26 +79,30 @@ namespace Tutor_helper
             ClothThisPage();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            //StudentMark updatedStudent = new StudentMark(
-            //    uuid: "",
-            //    name: nameTextBox.Text,
-            //    markid: student != null ? student.Uuid : (database.GetStudents().Max(s => s.Uuid) + 1),
-            //    subject: subjectComboBox.SelectedItem.ToString(),
-            //    mark: Convert.ToInt32(markNummer.Value)
-            //);
+            if (markId == 0)
+            {
+                database.AddMark(studentId, new StudentMark(
+                        id: database.GetStudents().Find(st => st.Id == studentId)
+                                .Marks.Count + 1,
+                        subject: subjectComboBox.SelectedItem.ToString(),
+                        mark: Convert.ToInt32(markNummer.Value)
+                    ));
 
-            //if (student == null)
-            //{
-            //    database.AddMark(updatedStudent);
-            //}
-            //else
-            //{
-            //    database.UpdateMark(updatedStudent);
-            //}
+                MessageBox.Show("Data has been added!", "", MessageBoxButtons.OK);
+            }
+            else
+            {
+                database.UpdateMark(studentId, new StudentMark(
+                        id: markId,
+                        subject: subjectComboBox.SelectedItem.ToString(),
+                        mark: Convert.ToInt32(markNummer.Value)
+                    ));
 
-            //MessageBox.Show("Data has been added!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Data has been updated!", "", MessageBoxButtons.OK);
+            }
+
         }
     }
 }

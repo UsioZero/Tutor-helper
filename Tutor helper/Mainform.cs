@@ -34,6 +34,7 @@ namespace Tutor_helper
         {
             curMaxColumn = 0;
 
+            //Copy list to filtredStudents
             filteredStudents = new List<Student> { };
             List<Student> tmpstud = database.GetStudents();
             for (int i = 0; i < tmpstud.Count; i++)
@@ -41,9 +42,11 @@ namespace Tutor_helper
                 filteredStudents.Add(new Student(tmpstud[i].ToString()));
             }
 
+            //Clear DataGridView
             studentsDataGrid.Rows.Clear();
             studentsDataGrid.Columns.Clear();
 
+            //find marks to selected subject and find columns number
             foreach (Student student in filteredStudents)
             {
                 student.Marks = student.Marks.FindAll(ma => ma.Subject.ToString() == subjects[curPage].ToString());
@@ -51,13 +54,15 @@ namespace Tutor_helper
                 if(student.Marks.Count > curMaxColumn) curMaxColumn = student.Marks.Count;
             }
 
+            //Add first 2 columns
             curMaxColumn += 2;
-
+            
+            //setup first 2 columns names
             studentsDataGrid.ColumnCount = curMaxColumn;
             studentsDataGrid.Columns[0].Name = "N";
             studentsDataGrid.Columns[1].Name = "Name";;
 
-            //int roInd = 0;
+            //Creat and add rows to DataGridView
             foreach (Student student in filteredStudents)
             {
                 DataGridViewRow dataGridViewRow = new DataGridViewRow();
@@ -75,16 +80,24 @@ namespace Tutor_helper
                 studentsDataGrid.Rows.Add(dataGridViewRow);
             }
 
-            //studentsDataGrid.DataSource = filteredStudents;
-
-            //Edit button column
-            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
-            editButtonColumn.Name = "edit_column";
-            editButtonColumn.Text = "Edit";
+            //Add button column
+            DataGridViewImageColumn editButtonColumn = new DataGridViewImageColumn();
+            editButtonColumn.Name = "Add";
+            editButtonColumn.Image = Image.FromFile(@"..\..\pen.png");
             int columnIndex = 0;
-            if (studentsDataGrid.Columns["edit_column"] == null)
+            if (studentsDataGrid.Columns["Add"] == null)
             {
                 studentsDataGrid.Columns.Insert(columnIndex, editButtonColumn);
+            }
+
+            studentsDataGrid.Columns["Add"].Width = 30;
+
+            studentsDataGrid.Columns[1].Width = 20;
+            for (int i = 3; i <= curMaxColumn; i++)
+            {
+                studentsDataGrid.Columns[i].Width = 20;
+                studentsDataGrid.Columns[i].DefaultCellStyle.Alignment
+                    = DataGridViewContentAlignment.MiddleCenter;
             }
 
             UpdatePageLabel();
@@ -103,7 +116,7 @@ namespace Tutor_helper
             }
         }
 
-        private void leftButton_Click(object sender, EventArgs e)
+        private void LeftButton_Click(object sender, EventArgs e)
         {
             if (curPage != 0)
             {
@@ -112,7 +125,7 @@ namespace Tutor_helper
             }
         }
 
-        private void rightButton_Click(object sender, EventArgs e)
+        private void RightButton_Click(object sender, EventArgs e)
         {
             if (curPage + 1 < subjects.Count)
             {
@@ -121,24 +134,21 @@ namespace Tutor_helper
             }
         }
 
-        private void AddorEditStudent()
+        //Add mark
+        private void AddorEditMark(int studentId)
         {
             AddOrEditForm editForm = new AddOrEditForm(this,
-                database);
+                database, studentId, subjects[curPage]);
             editForm.Show();
             Hide();
         }
-        private void AddorEditStudent(StudentMark student)
+        //Edit mark
+        private void AddorEditMark(int studentId, int markId)
         {
             AddOrEditForm editForm = new AddOrEditForm(this,
-                database, student);
+                database, studentId, markId);
             editForm.Show();
             Hide();
-        }   
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            AddorEditStudent();
         }
 
         public void OnBack()
@@ -154,12 +164,19 @@ namespace Tutor_helper
         //Mark edit
         private void studentsDataGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.ColumnIndex == studentsDataGrid.Columns["edit_column"].Index)
-            //{
-            //    StudentMark studentMark = filteredStudents[curFirstCity + e.RowIndex];
-
-            //    AddorEditStudent(studentMark);
-            //}
+            if (e.ColumnIndex == studentsDataGrid.Columns["Add"].Index)
+            {
+                AddorEditMark(e.RowIndex + 1);
+            }
+            else
+            {
+                if ((filteredStudents.Find(st => st.Id == e.RowIndex + 1)
+                    .Marks.Count >= e.ColumnIndex - 2) &&
+                    (e.ColumnIndex > 2))
+                {
+                    AddorEditMark(e.RowIndex + 1, filteredStudents[e.RowIndex].Marks[e.ColumnIndex - 3].Id);
+                }
+            }
         }
     }
 }

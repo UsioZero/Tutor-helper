@@ -68,6 +68,8 @@
             // 
             // subjectComboBox
             // 
+            this.subjectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.subjectComboBox.Enabled = false;
             this.subjectComboBox.FormattingEnabled = true;
             this.subjectComboBox.Location = new System.Drawing.Point(261, 127);
             this.subjectComboBox.Name = "subjectComboBox";
@@ -78,6 +80,7 @@
             // 
             this.nameTextBox.Location = new System.Drawing.Point(261, 91);
             this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(100, 20);
             this.nameTextBox.TabIndex = 5;
             // 
@@ -96,7 +99,7 @@
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // backButton
             // 

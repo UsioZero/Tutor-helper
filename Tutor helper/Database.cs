@@ -57,21 +57,18 @@ namespace Tutor_helper
             writer.Close();
         }
 
-        public void AddMark(Student student, StudentMark newMark)
+        public void AddMark(int studentId, StudentMark newMark)
         {
-            Students.Find(el => el.Id == student.Id)
+            Students.Find(st => st.Id == studentId)
                 .Marks.Add(newMark);
 
             SaveStudentsToFile();
         }
 
-        public void UpdateMark(Student student, StudentMark updated)
+        public void UpdateMark(int studentId, StudentMark updated)
         {
-            int index = Students.Find(el => el.Id == student.Id)
-                .Marks.FindIndex(ma => ma.Id == updated.Id);
-
-            Students.Find(el => el.Id == student.Id)
-                .Marks[index] = updated;
+            Students.Find(st => st.Id == studentId)
+                .Marks.Find(ma => ma.Id == updated.Id).Mark = updated.Mark;
 
             SaveStudentsToFile();
         }
