@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Tutor_helper
 {
@@ -20,6 +21,30 @@ namespace Tutor_helper
             subjects = database.Subjects;
 
             InitializeComponent();
+
+            //Appereance place
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
+                Screen.PrimaryScreen.WorkingArea.Height / 2 - 200);
+
+            //exit button -border
+            exitButton.TabStop = false;
+            exitButton.FlatStyle = FlatStyle.Flat;
+            exitButton.FlatAppearance.BorderSize = 0;
+            exitButton.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //left button -border
+            leftButtom.TabStop = false;
+            leftButtom.FlatStyle = FlatStyle.Flat;
+            leftButtom.FlatAppearance.BorderSize = 0;
+            leftButtom.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //right -border
+            rightButton.TabStop = false;
+            rightButton.FlatStyle = FlatStyle.Flat;
+            rightButton.FlatAppearance.BorderSize = 0;
+            rightButton.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
             UpdateFilteredStudents();
 
         }
@@ -100,9 +125,43 @@ namespace Tutor_helper
                     = DataGridViewContentAlignment.MiddleCenter;
             }
 
+            //size of datagrid
+            studentsDataGrid.Size = new Size(203 + 20 * (curMaxColumn - 2), studentsDataGrid.Size.Height);
+
+            //rightbutton location
+            rightButton.Location = new Point(studentsDataGrid.Location.X + studentsDataGrid.Size.Width + 6
+                , rightButton.Location.Y);
+
+            CellsFilter();
+
             UpdatePageLabel();
         }
 
+        private void CellsFilter()
+        {
+            foreach (DataGridViewRow row in studentsDataGrid.Rows)
+            {
+                Student tmpStudent = filteredStudents
+                    .Find(st => st.Id == Convert.ToInt32(row.Cells[1].Value));
+
+                for (int i = 0; i < tmpStudent.Marks.Count; i++)
+                {
+                    //label2.Text += kMark.ToString() + ";";
+                    if (tmpStudent.Marks[i].Mark == 5)
+                    {
+                        row.Cells[3 + i].Style.BackColor = Color.Green;
+                    }
+                    if(tmpStudent.Marks[i].Mark == 4 || tmpStudent.Marks[i].Mark == 3)
+                    {
+                        row.Cells[3 + i].Style.BackColor = Color.Yellow;
+                    }
+                    if (tmpStudent.Marks[i].Mark == 2 || tmpStudent.Marks[i].Mark == 1)
+                    {
+                        row.Cells[3 + i].Style.BackColor = Color.Red;
+                    }
+                }
+            }
+        }
         private void UpdatePageLabel()
         {
             PageLabel.Text = subjects[curPage];
@@ -170,11 +229,14 @@ namespace Tutor_helper
             }
             else
             {
-                if ((filteredStudents.Find(st => st.Id == e.RowIndex + 1)
-                    .Marks.Count >= e.ColumnIndex - 2) &&
-                    (e.ColumnIndex > 2))
+                if (e.ColumnIndex > 2)
                 {
-                    AddorEditMark(e.RowIndex + 1, filteredStudents[e.RowIndex].Marks[e.ColumnIndex - 3].Id);
+                    if ((filteredStudents.Find(st => st.Id == e.RowIndex + 1)
+                        .Marks.Count >= e.ColumnIndex - 2) &&
+                        (e.ColumnIndex > 2))
+                    {
+                        AddorEditMark(e.RowIndex + 1, filteredStudents[e.RowIndex].Marks[e.ColumnIndex - 3].Id);
+                    }
                 }
             }
         }
