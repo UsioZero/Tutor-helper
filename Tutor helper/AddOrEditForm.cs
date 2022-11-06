@@ -22,6 +22,18 @@ namespace Tutor_helper
         {
             InitializeComponent();
 
+            //right -border
+            backBo.TabStop = false;
+            backBo.FlatStyle = FlatStyle.Flat;
+            backBo.FlatAppearance.BorderSize = 0;
+            backBo.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //right -border
+            saveBo.TabStop = false;
+            saveBo.FlatStyle = FlatStyle.Flat;
+            saveBo.FlatAppearance.BorderSize = 0;
+            saveBo.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
             //Form Name
             this.Text = "Add";
 
@@ -93,7 +105,7 @@ namespace Tutor_helper
             Close();
         }
 
-        private void backButton_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
             ClothThisPage();
         }
@@ -121,11 +133,6 @@ namespace Tutor_helper
 
                 MessageBox.Show("Data has been updated!", "", MessageBoxButtons.OK);
             }
-
-        }
-
-        private void AddOrEditForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

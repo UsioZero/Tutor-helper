@@ -34,8 +34,8 @@
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.markNummer = new System.Windows.Forms.NumericUpDown();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
+            this.backBo = new System.Windows.Forms.Button();
+            this.saveBo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.markNummer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,25 +94,25 @@
             this.markNummer.Size = new System.Drawing.Size(120, 20);
             this.markNummer.TabIndex = 6;
             // 
-            // saveButton
+            // backBo
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 224);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 7;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.backBo.Image = global::Tutor_helper.Properties.Resources.exit20;
+            this.backBo.Location = new System.Drawing.Point(342, 207);
+            this.backBo.Name = "backBo";
+            this.backBo.Size = new System.Drawing.Size(40, 40);
+            this.backBo.TabIndex = 7;
+            this.backBo.UseVisualStyleBackColor = true;
+            this.backBo.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // backButton
+            // saveBo
             // 
-            this.backButton.Location = new System.Drawing.Point(307, 224);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 8;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.saveBo.Image = global::Tutor_helper.Properties.Resources.save40;
+            this.saveBo.Location = new System.Drawing.Point(12, 207);
+            this.saveBo.Name = "saveBo";
+            this.saveBo.Size = new System.Drawing.Size(40, 40);
+            this.saveBo.TabIndex = 8;
+            this.saveBo.UseVisualStyleBackColor = true;
+            this.saveBo.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // AddOrEditForm
             // 
@@ -121,8 +121,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(394, 259);
             this.ControlBox = false;
-            this.Controls.Add(this.backButton);
-            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.saveBo);
+            this.Controls.Add(this.backBo);
             this.Controls.Add(this.markNummer);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.subjectComboBox);
@@ -131,7 +131,6 @@
             this.Controls.Add(this.label1);
             this.Name = "AddOrEditForm";
             this.Text = "AddOrEditForm";
-            this.Load += new System.EventHandler(this.AddOrEditForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.markNummer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -146,7 +145,7 @@
         private System.Windows.Forms.ComboBox subjectComboBox;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.NumericUpDown markNummer;
-        private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button backBo;
+        private System.Windows.Forms.Button saveBo;
     }
 }
