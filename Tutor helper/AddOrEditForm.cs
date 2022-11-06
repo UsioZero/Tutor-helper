@@ -21,6 +21,15 @@ namespace Tutor_helper
         public AddOrEditForm(Mainform parentRE, Database databaseRe, int studentIdRe, string subj)
         {
             InitializeComponent();
+
+            //Form Name
+            this.Text = "Add";
+
+            //Appereance place
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
+                Screen.PrimaryScreen.WorkingArea.Height / 2 - 200);
+
             parent = parentRE;
             database = databaseRe;
             studentId = studentIdRe;
@@ -42,12 +51,22 @@ namespace Tutor_helper
         public AddOrEditForm(Mainform parentRE, Database databaseRe, int studentIdRe, int markIdRe)
         {
             InitializeComponent();
+
+
+            //Form Name
+            this.Text = "Edit";
+
+            //Appereance place
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
+                Screen.PrimaryScreen.WorkingArea.Height / 2 - 200);
+
             parent = parentRE;
             database = databaseRe;
             studentId = studentIdRe;
             markId = markIdRe;
 
-            markNummer.Minimum = 0;
+            markNummer.Minimum = 1;
             markNummer.Maximum = 5;
 
             markNummer.Value = database.GetStudents()
@@ -102,6 +121,11 @@ namespace Tutor_helper
 
                 MessageBox.Show("Data has been updated!", "", MessageBoxButtons.OK);
             }
+
+        }
+
+        private void AddOrEditForm_Load(object sender, EventArgs e)
+        {
 
         }
     }
