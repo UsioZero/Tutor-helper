@@ -16,7 +16,7 @@ namespace Tutor_helper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mainform());
+            Application.Run(new MainForm());
         }
     }
 }

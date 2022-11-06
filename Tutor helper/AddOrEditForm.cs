@@ -13,12 +13,12 @@ namespace Tutor_helper
     public partial class AddOrEditForm : Form
     {
         private readonly Database database;
-        private readonly Mainform parent;
+        private readonly JournalForm parent;
         private readonly Int32 studentId;
         private readonly Int32 markId = 0;
 
         //Add mark
-        public AddOrEditForm(Mainform parentRE, Database databaseRe, int studentIdRe, string subj)
+        public AddOrEditForm(JournalForm parentRE, Database databaseRe, int studentIdRe, string subj)
         {
             InitializeComponent();
 
@@ -33,6 +33,12 @@ namespace Tutor_helper
             saveBo.FlatStyle = FlatStyle.Flat;
             saveBo.FlatAppearance.BorderSize = 0;
             saveBo.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //button3 -border
+            button3.TabStop = false;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
 
             //Form Name
             this.Text = "Add";
@@ -60,7 +66,7 @@ namespace Tutor_helper
         }
 
         //Edit Mark
-        public AddOrEditForm(Mainform parentRE, Database databaseRe, int studentIdRe, int markIdRe)
+        public AddOrEditForm(JournalForm parentRE, Database databaseRe, int studentIdRe, int markIdRe)
         {
             InitializeComponent();
 
@@ -72,6 +78,24 @@ namespace Tutor_helper
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
                 Screen.PrimaryScreen.WorkingArea.Height / 2 - 200);
+
+            //right -border
+            backBo.TabStop = false;
+            backBo.FlatStyle = FlatStyle.Flat;
+            backBo.FlatAppearance.BorderSize = 0;
+            backBo.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //right -border
+            saveBo.TabStop = false;
+            saveBo.FlatStyle = FlatStyle.Flat;
+            saveBo.FlatAppearance.BorderSize = 0;
+            saveBo.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //button3 -border
+            button3.TabStop = false;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
 
             parent = parentRE;
             database = databaseRe;
@@ -134,6 +158,13 @@ namespace Tutor_helper
                 MessageBox.Show("Data has been updated!", "", MessageBoxButtons.OK);
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            HelpForm helpForm = new HelpForm(this);
+            helpForm.Show();
+            Hide();
         }
     }
 }

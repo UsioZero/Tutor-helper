@@ -55,11 +55,23 @@
       <DependentUpon>AddOrEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
-    <Compile Include="Mainform.cs">
+    <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mainform.Designer.cs">
-      <DependentUpon>Mainform.cs</DependentUpon>
+    <Compile Include="HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JournalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JournalForm.Designer.cs">
+      <DependentUpon>JournalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +85,14 @@
     <EmbeddedResource Include="AddOrEditForm.resx">
       <DependentUpon>AddOrEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mainform.resx">
-      <DependentUpon>Mainform.cs</DependentUpon>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JournalForm.resx">
+      <DependentUpon>JournalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -96,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="exit20.png" />
-    <None Include="save20.png" />
     <None Include="save40.png" />
     <None Include="pen20.png" />
     <Content Include="students - Copy.txt" />

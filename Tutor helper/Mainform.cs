@@ -4,241 +4,78 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Tutor_helper
 {
-
-    public partial class Mainform : Form
+    public partial class MainForm : Form
     {
-        public Mainform()
+        public MainForm()
         {
-            filteredStudents = new List<Student> { };
-            subjects = database.Subjects;
-
             InitializeComponent();
 
             //Appereance place
-            this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
+            StartPosition = FormStartPosition.Manual;
+            Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
                 Screen.PrimaryScreen.WorkingArea.Height / 2 - 200);
 
-            //exit button -border
+            //button1 -border
+            button1.TabStop = false;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+            
+            //button2 -border
+            button2.TabStop = false;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //button1 -border
+            button3.TabStop = false;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
+
+            //button1 -border
             exitButton.TabStop = false;
             exitButton.FlatStyle = FlatStyle.Flat;
             exitButton.FlatAppearance.BorderSize = 0;
             exitButton.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
-
-            //left button -border
-            leftButtom.TabStop = false;
-            leftButtom.FlatStyle = FlatStyle.Flat;
-            leftButtom.FlatAppearance.BorderSize = 0;
-            leftButtom.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
-
-            //right -border
-            rightButton.TabStop = false;
-            rightButton.FlatStyle = FlatStyle.Flat;
-            rightButton.FlatAppearance.BorderSize = 0;
-            rightButton.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
-
-            UpdateFilteredStudents();
-
         }
 
-        private int curPage = 0;
-        private int curMaxColumn = 0;
-        Database database = new Database();
-        private List<Student> filteredStudents;
-        private List<string> subjects;
-
-        public void UpdateFilteredStudents()
+        private void button1_Click(object sender, EventArgs e)
         {
-            curMaxColumn = 0;
-
-            //Copy list to filtredStudents
-            filteredStudents = new List<Student> { };
-            List<Student> tmpstud = database.GetStudents();
-            for (int i = 0; i < tmpstud.Count; i++)
-            {
-                filteredStudents.Add(new Student(tmpstud[i].ToString()));
-            }
-
-            //Clear DataGridView
-            studentsDataGrid.Rows.Clear();
-            studentsDataGrid.Columns.Clear();
-
-            //find marks to selected subject and find columns number
-            foreach (Student student in filteredStudents)
-            {
-                student.Marks = student.Marks.FindAll(ma => ma.Subject.ToString() == subjects[curPage].ToString());
-
-                if(student.Marks.Count > curMaxColumn) curMaxColumn = student.Marks.Count;
-            }
-
-            //Add first 2 columns
-            curMaxColumn += 2;
-            
-            //setup first 2 columns names
-            studentsDataGrid.ColumnCount = curMaxColumn;
-            studentsDataGrid.Columns[0].Name = "N";
-            studentsDataGrid.Columns[1].Name = "Name";;
-
-            //Creat and add rows to DataGridView
-            foreach (Student student in filteredStudents)
-            {
-                DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                dataGridViewRow.CreateCells(studentsDataGrid);
-
-                dataGridViewRow.Cells[0].Value = student.Id;
-                dataGridViewRow.Cells[1].Value = student.Name;
-                int rindex = 2;
-                foreach(StudentMark mark in student.Marks)
-                {
-                    dataGridViewRow.Cells[rindex].Value = mark.Mark;
-                    rindex++;
-                }
-
-                studentsDataGrid.Rows.Add(dataGridViewRow);
-            }
-
-            //Add button column
-            DataGridViewImageColumn editButtonColumn = new DataGridViewImageColumn();
-            editButtonColumn.Name = "Add";
-            editButtonColumn.Image = Image.FromFile(@"..\..\pen20.png");
-            int columnIndex = 0;
-            if (studentsDataGrid.Columns["Add"] == null)
-            {
-                studentsDataGrid.Columns.Insert(columnIndex, editButtonColumn);
-            }
-
-            studentsDataGrid.Columns["Add"].Width = 30;
-
-            studentsDataGrid.Columns[1].Width = 20;
-            for (int i = 3; i <= curMaxColumn; i++)
-            {
-                studentsDataGrid.Columns[i].Width = 20;
-                studentsDataGrid.Columns[i].DefaultCellStyle.Alignment
-                    = DataGridViewContentAlignment.MiddleCenter;
-            }
-
-            //size of datagrid
-            studentsDataGrid.Size = new Size(203 + 20 * (curMaxColumn - 2), studentsDataGrid.Size.Height);
-
-            //rightbutton location
-            rightButton.Location = new Point(studentsDataGrid.Location.X + studentsDataGrid.Size.Width + 6
-                , rightButton.Location.Y);
-
-            CellsFilter();
-
-            UpdatePageLabel();
-        }
-
-        private void CellsFilter()
-        {
-            foreach (DataGridViewRow row in studentsDataGrid.Rows)
-            {
-                Student tmpStudent = filteredStudents
-                    .Find(st => st.Id == Convert.ToInt32(row.Cells[1].Value));
-
-                for (int i = 0; i < tmpStudent.Marks.Count; i++)
-                {
-                    //label2.Text += kMark.ToString() + ";";
-                    if (tmpStudent.Marks[i].Mark == 5)
-                    {
-                        row.Cells[3 + i].Style.BackColor = Color.Green;
-                    }
-                    if(tmpStudent.Marks[i].Mark == 4 || tmpStudent.Marks[i].Mark == 3)
-                    {
-                        row.Cells[3 + i].Style.BackColor = Color.Yellow;
-                    }
-                    if (tmpStudent.Marks[i].Mark == 2 || tmpStudent.Marks[i].Mark == 1)
-                    {
-                        row.Cells[3 + i].Style.BackColor = Color.Red;
-                    }
-                }
-            }
-        }
-        private void UpdatePageLabel()
-        {
-            PageLabel.Text = subjects[curPage];
-        }
-
-        private void CityPage_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                OnBack();
-            }
-        }
-
-        private void LeftButton_Click(object sender, EventArgs e)
-        {
-            if (curPage != 0)
-            {
-                curPage--;
-                UpdateFilteredStudents();
-            }
-        }
-
-        private void RightButton_Click(object sender, EventArgs e)
-        {
-            if (curPage + 1 < subjects.Count)
-            {
-                curPage++;
-                UpdateFilteredStudents();
-            }
-        }
-
-        //Add mark
-        private void AddorEditMark(int studentId)
-        {
-            AddOrEditForm editForm = new AddOrEditForm(this,
-                database, studentId, subjects[curPage]);
-            editForm.Show();
+            JournalForm journalForm = new JournalForm(this);
+            journalForm.Show();
             Hide();
-        }
-        //Edit mark
-        private void AddorEditMark(int studentId, int markId)
-        {
-            AddOrEditForm editForm = new AddOrEditForm(this,
-                database, studentId, markId);
-            editForm.Show();
-            Hide();
-        }
-
-        public void OnBack()
-        {
-            Close();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            OnBack();
+            OnExit();
         }
 
-        //Mark edit
-        private void studentsDataGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void OnExit()
         {
-            if (e.ColumnIndex == studentsDataGrid.Columns["Add"].Index)
+            Close();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
             {
-                AddorEditMark(e.RowIndex + 1);
+                OnExit();
             }
-            else
-            {
-                if (e.ColumnIndex > 2)
-                {
-                    if ((filteredStudents.Find(st => st.Id == e.RowIndex + 1)
-                        .Marks.Count >= e.ColumnIndex - 2) &&
-                        (e.ColumnIndex > 2))
-                    {
-                        AddorEditMark(e.RowIndex + 1, filteredStudents[e.RowIndex].Marks[e.ColumnIndex - 3].Id);
-                    }
-                }
-            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            HelpForm helpForm = new HelpForm(this);
+            helpForm.Show();
+            Hide();
         }
     }
 }

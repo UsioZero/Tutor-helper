@@ -36,6 +36,7 @@
             this.markNummer = new System.Windows.Forms.NumericUpDown();
             this.backBo = new System.Windows.Forms.Button();
             this.saveBo = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.markNummer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +115,18 @@
             this.saveBo.UseVisualStyleBackColor = true;
             this.saveBo.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button3.Font = new System.Drawing.Font("Segoe UI Symbol", 18F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(342, 12);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(40, 40);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "?";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // AddOrEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +134,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(394, 259);
             this.ControlBox = false;
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.saveBo);
             this.Controls.Add(this.backBo);
             this.Controls.Add(this.markNummer);
@@ -147,5 +161,6 @@
         private System.Windows.Forms.NumericUpDown markNummer;
         private System.Windows.Forms.Button backBo;
         private System.Windows.Forms.Button saveBo;
+        private System.Windows.Forms.Button button3;
     }
 }
