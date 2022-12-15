@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewGroupForm.Designer.cs">
+      <DependentUpon>AddNewGroupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOrEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +61,12 @@
       <DependentUpon>AddOrEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="EditDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDateForm.Designer.cs">
+      <DependentUpon>EditDateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,8 +94,14 @@
     </Compile>
     <Compile Include="Student.cs" />
     <Compile Include="StudentMark.cs" />
+    <EmbeddedResource Include="AddNewGroupForm.resx">
+      <DependentUpon>AddNewGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOrEditForm.resx">
       <DependentUpon>AddOrEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDateForm.resx">
+      <DependentUpon>EditDateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>

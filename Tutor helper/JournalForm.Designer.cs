@@ -32,10 +32,11 @@
             this.studentsDataGrid = new System.Windows.Forms.DataGridView();
             this.leftButtom = new System.Windows.Forms.Button();
             this.rightButton = new System.Windows.Forms.Button();
-            this.PageLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.SubjComBo = new System.Windows.Forms.ComboBox();
+            this.GroupComBo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,16 +79,6 @@
             this.rightButton.UseVisualStyleBackColor = false;
             this.rightButton.Click += new System.EventHandler(this.RightButton_Click);
             // 
-            // PageLabel
-            // 
-            this.PageLabel.AutoSize = true;
-            this.PageLabel.Font = new System.Drawing.Font("Georgia", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PageLabel.Location = new System.Drawing.Point(43, 216);
-            this.PageLabel.Name = "PageLabel";
-            this.PageLabel.Size = new System.Drawing.Size(31, 31);
-            this.PageLabel.TabIndex = 3;
-            this.PageLabel.Text = "0";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -120,6 +111,34 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // SubjComBo
+            // 
+            this.SubjComBo.FormattingEnabled = true;
+            this.SubjComBo.Items.AddRange(new object[] {
+            "Math",
+            "Physics",
+            "Biology",
+            "HMCo"});
+            this.SubjComBo.Location = new System.Drawing.Point(49, 219);
+            this.SubjComBo.Name = "SubjComBo";
+            this.SubjComBo.Size = new System.Drawing.Size(121, 21);
+            this.SubjComBo.TabIndex = 12;
+            this.SubjComBo.SelectedIndexChanged += new System.EventHandler(this.SubjComBo_SelectedIndexChanged);
+            // 
+            // GroupComBo
+            // 
+            this.GroupComBo.FormattingEnabled = true;
+            this.GroupComBo.Items.AddRange(new object[] {
+            "AKTI-20-1",
+            "AKTI-20-2",
+            "PZPI-21-1",
+            "PZPI-21-2",
+            "PZPI-21-3"});
+            this.GroupComBo.Location = new System.Drawing.Point(195, 23);
+            this.GroupComBo.Name = "GroupComBo";
+            this.GroupComBo.Size = new System.Drawing.Size(121, 21);
+            this.GroupComBo.TabIndex = 13;
+            // 
             // JournalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,10 +146,11 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(502, 306);
             this.ControlBox = false;
+            this.Controls.Add(this.GroupComBo);
+            this.Controls.Add(this.SubjComBo);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.PageLabel);
             this.Controls.Add(this.rightButton);
             this.Controls.Add(this.leftButtom);
             this.Controls.Add(this.studentsDataGrid);
@@ -148,10 +168,11 @@
         private System.Windows.Forms.DataGridView studentsDataGrid;
         private System.Windows.Forms.Button leftButtom;
         private System.Windows.Forms.Button rightButton;
-        private System.Windows.Forms.Label PageLabel;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox SubjComBo;
+        private System.Windows.Forms.ComboBox GroupComBo;
     }
 }
 

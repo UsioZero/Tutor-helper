@@ -1,6 +1,6 @@
-1;Oleg;7;1;Biology;3;2;HMCo;5;3;Math;4;4;HMCo;3;5;HMCo;5;6;HMCo;4;7;HMCo;1
-2;Olegsii;2;1;Physics;3;2;Physics;4
-3;Olegamegaledon;2;1;Physics;5;2;Physics;5
-4;Olelikopter;1;1;Biology;3
-5;Olegtorat;5;1;Biology;3;2;Biology;4;3;Physics;4;4;HMCo;4;5;Math;5
-6;Olegithub;4;1;Physics;2;2;Math;2;3;Math;1;4;Math;3
+1;Oleg;8;1;Biology;66;2;HMCo;96;3;Math;89;4;HMCo;62;5;HMCo;20;6;HMCo;70;7;HMCo;95;8;Math;91
+2;Olegsii;2;1;Physics;75;2;Physics;85
+3;Olegamegaledon;3;1;Physics;11;2;Physics;99;3;Physics;66
+4;Olelikopter;1;1;Biology;69
+5;Olegtorat;6;1;Biology;61;2;Biology;77;3;Physics;88;4;HMCo;83;5;Math;90;6;HMCo;82
+6;Olegithub;4;1;Physics;56;2;Math;25;3;Math;1;4;Math;66

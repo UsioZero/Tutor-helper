@@ -77,5 +77,12 @@ namespace Tutor_helper
             helpForm.Show();
             Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddNewGroupForm newGroupForm = new AddNewGroupForm(this);
+            newGroupForm.Show();
+            Hide();
+        }
     }
 }

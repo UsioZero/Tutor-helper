@@ -12,3 +12,5 @@ C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.Mainform.resources
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.AddOrEditForm.resources
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.JournalForm.resources
 C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.HelpForm.resources
+C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.EditDateForm.resources
+C:\projects\Tutor helper\Tutor helper\obj\Debug\Tutor_helper.AddNewGroupForm.resources

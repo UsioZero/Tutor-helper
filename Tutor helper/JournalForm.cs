@@ -24,6 +24,9 @@ namespace Tutor_helper
 
             InitializeComponent();
 
+            //GroupComBo
+            GroupComBo.SelectedIndex = 0;
+
             //Appereance place
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
@@ -93,7 +96,13 @@ namespace Tutor_helper
             //setup first 2 columns names
             studentsDataGrid.ColumnCount = curMaxColumn;
             studentsDataGrid.Columns[0].Name = "N";
-            studentsDataGrid.Columns[1].Name = "Name";;
+            studentsDataGrid.Columns[1].Name = "Name";
+
+            //data
+            for (int i = 2; i < curMaxColumn; i++)
+            {
+                studentsDataGrid.Columns[i].Name = $"{11+i}.12";
+            }
 
             //Creat and add rows to DataGridView
             foreach (Student student in filteredStudents)
@@ -128,13 +137,13 @@ namespace Tutor_helper
             studentsDataGrid.Columns[1].Width = 20;
             for (int i = 3; i <= curMaxColumn; i++)
             {
-                studentsDataGrid.Columns[i].Width = 20;
+                studentsDataGrid.Columns[i].Width = 39;
                 studentsDataGrid.Columns[i].DefaultCellStyle.Alignment
                     = DataGridViewContentAlignment.MiddleCenter;
             }
 
             //size of datagrid
-            studentsDataGrid.Size = new Size(203 + 20 * (curMaxColumn - 2), studentsDataGrid.Size.Height);
+            studentsDataGrid.Size = new Size(203 + 39 * (curMaxColumn - 2), studentsDataGrid.Size.Height);
 
             //rightbutton location
             rightButton.Location = new Point(studentsDataGrid.Location.X + studentsDataGrid.Size.Width + 6
@@ -155,24 +164,23 @@ namespace Tutor_helper
                 for (int i = 0; i < tmpStudent.Marks.Count; i++)
                 {
                     //label2.Text += kMark.ToString() + ";";
-                    if (tmpStudent.Marks[i].Mark == 5)
-                    {
-                        row.Cells[3 + i].Style.BackColor = Color.Green;
-                    }
-                    if(tmpStudent.Marks[i].Mark == 4 || tmpStudent.Marks[i].Mark == 3)
+                    row.Cells[3 + i].Style.BackColor = Color.Red;
+                    if (tmpStudent.Marks[i].Mark >= 60)
                     {
                         row.Cells[3 + i].Style.BackColor = Color.Yellow;
                     }
-                    if (tmpStudent.Marks[i].Mark == 2 || tmpStudent.Marks[i].Mark == 1)
+                    if (tmpStudent.Marks[i].Mark >= 90)
                     {
-                        row.Cells[3 + i].Style.BackColor = Color.Red;
+                        row.Cells[3 + i].Style.BackColor = Color.Green;
                     }
+
                 }
             }
         }
         private void UpdatePageLabel()
         {
-            PageLabel.Text = subjects[curPage];
+            //SubjComBo
+            SubjComBo.SelectedItem = subjects[curPage];
         }
 
         private void CityPage_KeyDown(object sender, KeyEventArgs e)
@@ -240,11 +248,20 @@ namespace Tutor_helper
             {
                 if (e.ColumnIndex > 2)
                 {
-                    if ((filteredStudents.Find(st => st.Id == e.RowIndex + 1)
-                        .Marks.Count >= e.ColumnIndex - 2) &&
-                        (e.ColumnIndex > 2))
+                    if (e.RowIndex == -1)
                     {
-                        AddorEditMark(e.RowIndex + 1, filteredStudents[e.RowIndex].Marks[e.ColumnIndex - 3].Id);
+                        EditDateForm editDateForm = new EditDateForm(this);
+                        editDateForm.Show();
+                        Hide();
+                    }
+                    else
+                    {
+                        if ((filteredStudents.Find(st => st.Id == e.RowIndex + 1)
+                            .Marks.Count >= e.ColumnIndex - 2) &&
+                            (e.ColumnIndex > 2))
+                        {
+                            AddorEditMark(e.RowIndex + 1, filteredStudents[e.RowIndex].Marks[e.ColumnIndex - 3].Id);
+                        }
                     }
                 }
             }
@@ -255,6 +272,12 @@ namespace Tutor_helper
             HelpForm helpForm = new HelpForm(this);
             helpForm.Show();
             Hide();
+        }
+
+        private void SubjComBo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            curPage = SubjComBo.SelectedIndex;
+            UpdateFilteredStudents();
         }
     }
 }

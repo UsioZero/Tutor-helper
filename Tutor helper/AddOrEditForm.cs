@@ -52,8 +52,10 @@ namespace Tutor_helper
             database = databaseRe;
             studentId = studentIdRe;
 
-            markNummer.Minimum = 0;
-            markNummer.Maximum = 5;
+            markNummer.Minimum = 1;
+            markNummer.Maximum = 100;
+
+            markNummer.Value = 60;
 
             subjectComboBox.Items.AddRange(database.Subjects
                 .ToArray()
@@ -79,13 +81,13 @@ namespace Tutor_helper
             this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - 200,
                 Screen.PrimaryScreen.WorkingArea.Height / 2 - 200);
 
-            //right -border
+            //back -border
             backBo.TabStop = false;
             backBo.FlatStyle = FlatStyle.Flat;
             backBo.FlatAppearance.BorderSize = 0;
             backBo.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //transparent
 
-            //right -border
+            //save -border
             saveBo.TabStop = false;
             saveBo.FlatStyle = FlatStyle.Flat;
             saveBo.FlatAppearance.BorderSize = 0;
@@ -103,7 +105,9 @@ namespace Tutor_helper
             markId = markIdRe;
 
             markNummer.Minimum = 1;
-            markNummer.Maximum = 5;
+            markNummer.Maximum = 100;
+
+            markNummer.Value = 60;
 
             markNummer.Value = database.GetStudents()
                 .Find(st => st.Id == studentId)
